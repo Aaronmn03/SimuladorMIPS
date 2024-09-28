@@ -13,3 +13,7 @@ class UnidadProcesamiento:
         self.registros = Registros()
         self.alu = ALU()
         print("Se ha creado la Unidad de procesamiento")
+
+    def cargar_memoria_datos(self,datos):
+        self.memoria_datos.cargar_datos(datos)
+        self.memoria_datos.mostrar_variables()
