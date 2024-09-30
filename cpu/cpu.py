@@ -11,14 +11,5 @@ class CPU:
     def leer_fichero(self, archivo):
         fichero = open(archivo)
         contenido_fichero = fichero.read()
-        self.dividir_contenido_archivo(contenido_fichero)
+        self.unidad_procesamiento.dividir_contenido_archivo(contenido_fichero)
         fichero.close()
-
-    def dividir_contenido_archivo(self,datos):
-        datos_memoria = datos.split('.text',1)[0]
-        instrucciones = datos.split('.text',1)[1]
-        self.cargar_memoria_datos(datos_memoria)
-        pass
-
-    def cargar_memoria_datos(self, datos):
-        self.unidad_procesamiento.cargar_memoria_datos(datos)

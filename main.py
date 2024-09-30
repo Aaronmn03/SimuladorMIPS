@@ -3,7 +3,7 @@ from cpu.cpu import CPU
 
 def main():
     cpu = CPU()
-    cpu.leer_fichero("archivos_auxiliares/instrucciones.txt");
+    cpu.leer_fichero("archivos_auxiliares/instrucciones.txt")
 
 
     

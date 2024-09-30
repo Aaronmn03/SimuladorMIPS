@@ -14,6 +14,15 @@ class UnidadProcesamiento:
         self.alu = ALU()
         print("Se ha creado la Unidad de procesamiento")
 
+    def dividir_contenido_archivo(self,datos):
+        datos_memoria = datos.split('.text',1)[0]
+        instrucciones = datos.split('.text',1)[1]
+        self.cargar_memoria_datos(datos_memoria)
+        self.cargar_memoria_instrucciones(instrucciones)
+
+
     def cargar_memoria_datos(self,datos):
         self.memoria_datos.cargar_datos(datos)
-        self.memoria_datos.mostrar_variables()
+
+    def cargar_memoria_instrucciones(self,instrucciones):
+        self.memoria_instrucciones.cargar_datos(instrucciones)

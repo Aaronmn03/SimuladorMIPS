@@ -17,7 +17,7 @@
     mul $t3, $t1, $t2 
     div $t1, $t3, $s2
 
-etiqueta_hacia_atras:
+salto_atras:
 
     add $t2, $t2, $s1      
     and $t5, $s1, $s2
@@ -25,10 +25,10 @@ etiqueta_hacia_atras:
     xor $t7, $t2, $s4
     nor $t8, $s1, $s3       
     
-    bne $t2, $s2, etiqueta_hacia_adela
-    beq $t2, $s2, etiqueta_hacia_atras 
+    bne $t2, $s2, salto_alante
+    beq $t2, $s2, salto_atras 
 
-etiqueta_hacia_adela:
+salto_alante:
     add $s4, $t1, $s4
     j fin
     sub $s0, $t3, $s4
