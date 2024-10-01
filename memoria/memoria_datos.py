@@ -11,7 +11,7 @@ class MemoriaDatos(Memoria):
         for linea in variables:
             if linea not in ['.data', '']:
                 self.dividir_linea(linea.split('    '))
-        #self.mostrar_variables()
+        self.mostrar_variables()
 
     def dividir_linea(self, texto):
         division_dos_puntos = texto[1].split(': ')

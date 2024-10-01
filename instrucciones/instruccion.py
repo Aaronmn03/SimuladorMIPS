@@ -4,3 +4,6 @@ class Instruccion:
 
     def ejecutar(self):
         pass
+
+    def imprimir(self):
+        return self.nombre

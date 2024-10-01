@@ -7,3 +7,6 @@ class InstruccionMemoria(Instruccion):
         super().__init__(nombre)
         self.registro = operandos[0]
         self.direccion_memoria = operandos[1]
+
+    def imprimir(self):
+        return super().imprimir() + ' ' + self.registro + ' ' + self.direccion_memoria
