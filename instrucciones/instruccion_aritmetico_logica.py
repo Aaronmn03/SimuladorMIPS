@@ -9,4 +9,4 @@ class InstruccionAritmeticaLogica(Instruccion):
         self.registro_dos = operandos[2]
 
     def imprimir(self):
-        return super().imprimir() + ' ' + self.registro_destino + ' ' + self.registro_uno + ' ' + self.registro_dos
+        return super().imprimir() + ' ' + self.registro_destino + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos)

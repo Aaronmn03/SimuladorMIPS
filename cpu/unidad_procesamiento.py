@@ -12,7 +12,6 @@ class UnidadProcesamiento:
         self.memoria_datos = MemoriaDatos()
         self.registros = Registros()
         self.alu = ALU()
-        print("Se ha creado la Unidad de procesamiento")
 
     def dividir_contenido_archivo(self,datos):
         datos_memoria = datos.split('.text',1)[0]

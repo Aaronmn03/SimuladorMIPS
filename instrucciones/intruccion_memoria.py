@@ -9,4 +9,4 @@ class InstruccionMemoria(Instruccion):
         self.direccion_memoria = operandos[1]
 
     def imprimir(self):
-        return super().imprimir() + ' ' + self.registro + ' ' + self.direccion_memoria
+        return super().imprimir() + ' ' + str(self.registro) + ' ' + str(self.direccion_memoria)
