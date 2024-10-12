@@ -10,3 +10,13 @@ class InstruccionMemoria(Instruccion):
 
     def imprimir(self):
         return super().imprimir() + ' ' + str(self.registro) + ' ' + str(self.direccion_memoria)
+    
+    def esta_registro_en_destino(self, lregistros):
+        for registro_aux in lregistros:
+            if registro_aux == self.registro:
+                print("tenemos raw con(memoria): "+ str(registro_aux) + str(self.registro))
+                return True
+        return False
+        
+    def registros_operandos(self):
+        return [self.registro]

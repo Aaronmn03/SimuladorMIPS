@@ -6,24 +6,24 @@ class ALU:
 
     def ejecutar_aritmetico_logica(self,operacion):
         if operacion.nombre == "add":
-            return operacion.registro_uno + operacion.registro_dos
+            return operacion.valor_uno + operacion.valor_dos
         elif operacion.nombre == "sub":
-            return operacion.registro_uno - operacion.registro_dos
+            return operacion.valor_uno - operacion.valor_dos
         elif operacion.nombre == "mul":
-            return operacion.registro_uno * operacion.registro_dos
+            return operacion.valor_uno * operacion.valor_dos
         elif operacion.nombre == "div":
-            if operacion.registro_dos != 0:
-                return operacion.registro_uno / operacion.registro_dos
+            if operacion.valor_dos != 0:
+                return operacion.valor_uno / operacion.valor_dos
             else: 
                 return 0 
         elif operacion.nombre == "and":
-            return operacion.registro_uno & operacion.registro_dos
+            return operacion.valor_uno & operacion.valor_dos
         elif operacion.nombre == "or":
-            return operacion.registro_uno | operacion.registro_dos
+            return operacion.valor_uno | operacion.valor_dos
         elif operacion.nombre == "xor":
-            return operacion.registro_uno ^ operacion.registro_dos
+            return operacion.valor_uno ^ operacion.valor_dos
         elif operacion.nombre == "nor":
-            return ~(operacion.registro_uno | operacion.registro_dos)
+            return ~(operacion.valor_uno | operacion.valor_dos)
         else:
             raise InstruccionNoEncontradaExcepcion("No se ha encontrado el tipo de aritmetico-logica")
         
@@ -40,5 +40,27 @@ class ALU:
             raise InstruccionNoEncontradaExcepcion("No se ha encontrado el tipo de operacion de memoria")
     
     def ejecutar_salto(self,operacion):
-        print("Es un salto")
-        return 0
+        if operacion.nombre == "j":
+            resultado_salto = {
+                'salto': True,
+                'direccion': operacion.etiqueta
+            }
+        elif operacion.nombre == "bne":
+            if operacion.registro_uno - operacion.registro_dos != 0:
+                resultado_salto = {
+                    'salto': True,
+                    'direccion': operacion.etiqueta
+                }
+            else:
+                return None
+        elif operacion.nombre == "beq":
+            if operacion.registro_uno - operacion.registro_dos == 0:
+                resultado_salto = {
+                    'salto': True,
+                    'direccion': operacion.etiqueta
+                }
+            else:
+                return None
+        else:
+            raise InstruccionNoEncontradaExcepcion("No se ha encontrado el tipo de operacion de salto")
+        return resultado_salto

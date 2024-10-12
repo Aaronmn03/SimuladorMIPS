@@ -3,7 +3,6 @@ from instrucciones.instruccion_no_encontrada_excepcion import InstruccionNoEncon
 from instrucciones.instruccion_salto import InstruccionSalto
 from instrucciones.intruccion_memoria import InstruccionMemoria
 from registros_acoplamiento_segmentacion.ex_mem import EX_MEM
-from registros_acoplamiento_segmentacion.registro_acoplamiento import RegistroAcoplamiento
 
 
 class EX:
@@ -19,7 +18,7 @@ class EX:
             elif isinstance(self.operacion,InstruccionMemoria):
                 return EX_MEM(self.alu.ejecutar_memoria(self.operacion), self.operacion)
             elif isinstance(self.operacion,InstruccionSalto):
-                return EX_MEM(self.alu.ejecutar_salto(self.operacion), self.operacion)
+                return self.alu.ejecutar_salto(self.operacion)
             else:
                 raise InstruccionNoEncontradaExcepcion("Ese tipo de instruccion no existe")
         else:

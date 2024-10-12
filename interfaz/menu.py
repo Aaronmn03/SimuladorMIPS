@@ -1,8 +1,9 @@
 import curses
 
 class Menu:
-    def __init__(self, registros, segmentacion):
-        self.registros = registros
+    def __init__(self, unidad_procesamiento, segmentacion):
+        
+        self.unidad_procesamiento = unidad_procesamiento
         self.segmentacion = segmentacion    #quiero que muestre de alguna forma como va la segmentacion.
         curses.wrapper(self.inicializar_menu)
 
@@ -19,7 +20,7 @@ class Menu:
             stdscr.clear()
             self.mostrar_menu(stdscr, menu, seleccion)
             self.mostrar_registros(stdscr, width)
-            self.mostrar_segmentacion(stdscr, width)
+            self.mostrar_segmentacion(stdscr)
             stdscr.refresh()
 
             key = stdscr.getch()
@@ -40,21 +41,30 @@ class Menu:
                 stdscr.addstr(0, idx * 20, f"  {opcion}")
 
     def mostrar_registros(self, stdscr, width):
-        """Imprime los registros en la consola."""
-        num_registros = len(self.registros.elementos)
+        num_registros = len(self.unidad_procesamiento.registros.elementos)
         # Asegúrate de que hay espacio suficiente en la ventana
         if num_registros + 1 < stdscr.getmaxyx()[0]:  # +1 para la línea del menú
-            for idx, value in enumerate(self.registros.elementos):
-                etiqueta = "| " + str(value) + " -> " + str(self.registros.elementos[value]) + " |"
+            for idx, value in enumerate(self.unidad_procesamiento.registros.elementos):
+                etiqueta = "| " + str(value) + " -> " + str(self.unidad_procesamiento.registros.elementos[value]) + " |"
+                pos_x = width - len(etiqueta) - 1
+                stdscr.addstr(idx + 1, pos_x, etiqueta)  # Ajustar la posición para que no se superponga con el menú
+        else:
+            stdscr.addstr(1, 0, "No hay suficiente espacio para mostrar los registros.")
+
+    def mostrar_registros(self, stdscr, width):
+        num_registros = len(self.unidad_procesamiento.registros.elementos)
+        # Asegúrate de que hay espacio suficiente en la ventana
+        if num_registros + 1 < stdscr.getmaxyx()[0]:  # +1 para la línea del menú
+            for idx, value in enumerate(self.unidad_procesamiento.registros.elementos):
+                etiqueta = "| " + str(value) + " -> " + str(self.unidad_procesamiento.registros.elementos[value]) + " |"
                 pos_x = width - len(etiqueta) - 1
                 stdscr.addstr(idx + 1, pos_x, etiqueta)  # Ajustar la posición para que no se superponga con el menú
         else:
             stdscr.addstr(1, 0, "No hay suficiente espacio para mostrar los registros.")
             
 
-    def mostrar_segmentacion(self, stdscr, width):
+    def mostrar_segmentacion(self, stdscr):
         stdscr.addstr(3, 20, "PC = " + str(self.segmentacion.unidad_procesamiento.pc.valor))
-
 
 
     def navegar_menu(self, key, seleccion, num_opciones):

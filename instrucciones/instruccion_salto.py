@@ -14,8 +14,13 @@ class InstruccionSalto(Instruccion):
 
     def imprimir(self):
         if not hasattr(self, 'registro_uno'):
-            return super().imprimir() + ' ' + self.etiqueta
+            return super().imprimir() + ' ' + str(self.etiqueta)
         else:
-            return super().imprimir() + ' ' + self.registro_uno + ' ' + self.registro_dos + ' ' + self.etiqueta
+            return super().imprimir() + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos) + ' ' + str(self.etiqueta)
 
+    def registros_operandos(self):
+        if hasattr(self, 'registro_uno'):
+            return [self.registro_uno, self.registro_dos]
 
+    def esta_registro_en_destino(self, lregistros):
+        pass

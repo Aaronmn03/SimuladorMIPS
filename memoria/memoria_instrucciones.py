@@ -26,6 +26,12 @@ class MemoriaInstrucciones(Memoria):
     def crear_etiqueta(self, linea, pc_actual):
         self.etiquetas[linea[:-1]] = pc_actual
 
+    def devolver_etiqueta(self, etiqueta):
+        print(self.etiquetas)
+        return [self.etiquetas[etiqueta]]
+
     def mostrar_instrucciones(self):
         for instruccion in self.elementos:
             print(str(instruccion) + ' -> ' + str(self.elementos[instruccion]))
+
+

@@ -28,9 +28,14 @@ class Registros(Memoria):
         }
 
     def procesar_registros(self, direcciones):
-        direcciones[1] = self.elementos[direcciones[1]]
-        direcciones[2] = self.elementos[direcciones[2]]
+        direcciones.append(self.elementos[direcciones[1]])
+        direcciones.append(self.elementos[direcciones[2]])
         return direcciones
+    
+    def procesar_registros_branch(self, operandos):
+        operandos[0] = self.elementos[operandos[0]]
+        operandos[1] = self.elementos[operandos[1]]
+        return operandos
     
     def devolver_registro(self, registro):
         return self.elementos[registro]

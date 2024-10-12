@@ -1,3 +1,4 @@
+from instrucciones.instruccion_aritmetico_logica import InstruccionAritmeticaLogica
 from instrucciones.intruccion_memoria import InstruccionMemoria
 
 
@@ -9,6 +10,9 @@ class WB:
         if input is not None:
             if isinstance(input.operacion,InstruccionMemoria):
                 if input.operacion.nombre in ['lw', 'lb']:
-                    print("Estamos en WB: ", input.valor)
                     self.registros.cargar_dato(input.operacion.registro,input.valor['valor']) 
                     self.registros.mostrar_registros()
+            
+            if isinstance(input.operacion,InstruccionAritmeticaLogica):
+                self.registros.cargar_dato(input.operacion.registro_destino,input.valor.valor) 
+                self.registros.mostrar_registros()
