@@ -7,11 +7,13 @@ from registros_acoplamiento_segmentacion.registro_acoplamiento import RegistroAc
 class MEM:
     def __init__(self, memoria_datos):
         self.memoria_datos = memoria_datos
+        self.operacion = None
 
     def ejecutar(self,input):
         if input is not None:
             if not isinstance(input,dict):
                 if isinstance(input.operacion,InstruccionAritmeticaLogica):
+                    self.operacion = input.operacion
                     valor = input                
                 elif isinstance(input.operacion, InstruccionMemoria):
                         if input.operacion.nombre in ['lw','lb']:
@@ -33,3 +35,4 @@ class MEM:
             return registro_acoplamiento
         else:
             return None
+        

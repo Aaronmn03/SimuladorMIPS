@@ -10,8 +10,8 @@ class InstruccionAritmeticaLogica(Instruccion):
         self.valor_uno = operandos[3]
         self.valor_dos = operandos[4]
 
-    def imprimir(self):
-        return super().imprimir() + ' ' + self.registro_destino + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos)
+    def devolver_string(self):
+        return super().devolver_string() + ' ' + self.registro_destino + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos)
     
     def esta_registro_en_destino(self, lregistros):
         if lregistros is not None:

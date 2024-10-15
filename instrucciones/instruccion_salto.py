@@ -12,11 +12,11 @@ class InstruccionSalto(Instruccion):
         else:
             self.etiqueta = operandos[0]
 
-    def imprimir(self):
+    def devolver_string(self):
         if not hasattr(self, 'registro_uno'):
-            return super().imprimir() + ' ' + str(self.etiqueta)
+            return super().devolver_string() + ' ' + str(self.etiqueta)
         else:
-            return super().imprimir() + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos) + ' ' + str(self.etiqueta)
+            return super().devolver_string() + ' ' + str(self.registro_uno) + ' ' + str(self.registro_dos) + ' ' + str(self.etiqueta)
 
     def registros_operandos(self):
         if hasattr(self, 'registro_uno'):

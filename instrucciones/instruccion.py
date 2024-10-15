@@ -5,5 +5,5 @@ class Instruccion:
     def ejecutar(self):
         pass
 
-    def imprimir(self):
+    def devolver_string(self):
         return self.nombre

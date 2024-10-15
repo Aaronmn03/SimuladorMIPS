@@ -1,15 +1,18 @@
-from registros_acoplamiento_segmentacion.registro_acoplamiento import RegistroAcoplamiento
+from registros_acoplamiento_segmentacion.if_id import IF_ID
 
 
 class IF:
     def __init__(self, pc, memoria_instrucciones):
         self.memoria_instrucciones = memoria_instrucciones
+        self.instruccion = None
         self.pc = pc
         
 
     def ejecutar(self):
+        self.instruccion = None
         if self.pc.valor in self.memoria_instrucciones.elementos:
-            aux = self.memoria_instrucciones.elementos[self.pc.valor]
+            self.instruccion = self.memoria_instrucciones.elementos[self.pc.valor]
             self.pc.avanzar_un_paso()
-            return RegistroAcoplamiento(aux)
+            return IF_ID(self.instruccion)
         return None
+    

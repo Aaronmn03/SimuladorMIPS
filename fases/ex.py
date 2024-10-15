@@ -8,9 +8,11 @@ from registros_acoplamiento_segmentacion.ex_mem import EX_MEM
 class EX:
     def __init__(self,alu):
         self.alu = alu
+        self.operacion = None
         
 
     def ejecutar(self, operacion):
+        self.operacion = None
         if operacion is not None:
             self.operacion = operacion.valor
             if isinstance(self.operacion,InstruccionAritmeticaLogica):
@@ -23,4 +25,4 @@ class EX:
                 raise InstruccionNoEncontradaExcepcion("Ese tipo de instruccion no existe")
         else:
             return None
-    
+        

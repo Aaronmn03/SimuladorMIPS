@@ -14,7 +14,6 @@ class MemoriaInstrucciones(Memoria):
             pc_actual = (indice - len(self.etiquetas)) * 4
             if(self.is_etiqueta(linea_aux, pc_actual) == False):            
                 self.elementos[pc_actual] = linea_aux
-        #self.mostrar_instrucciones()
 
     def is_etiqueta(self, linea, pc):
         if ':' in linea:
@@ -30,8 +29,8 @@ class MemoriaInstrucciones(Memoria):
         print(self.etiquetas)
         return [self.etiquetas[etiqueta]]
 
-    def mostrar_instrucciones(self):
+    def devolver_instrucciones(self):
+        aux = []
         for instruccion in self.elementos:
-            print(str(instruccion) + ' -> ' + str(self.elementos[instruccion]))
-
-
+            aux.append(str(instruccion) + ' -> ' + str(self.elementos[instruccion]))
+        return aux

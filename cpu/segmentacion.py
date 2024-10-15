@@ -21,12 +21,12 @@ class Segmentacion:
         self.ex = EX(self.unidad_procesamiento.alu)
         self.mem = MEM(self.unidad_procesamiento.memoria_datos)
         self.wb = WB(self.unidad_procesamiento.registros)
+        self.fases = [self._if, self.id, self.ex, self.mem, self.wb]
+        self.raw = False
 
-    def empezar_segmentacion(self):
-        i = 0
+    def empezar_segmentacion(self, un_paso):
+        ciclo = 0
         while(True):
-            i+=1
-            print("Estas en el paso: "+ str(i) + " con pc: " + str(self.unidad_procesamiento.pc.valor))
             self.wb.ejecutar(self.mem_wb)
             ex_aux = self.ex.ejecutar(self.id_ex)
             self.mem_wb = self.mem.ejecutar(self.ex_mem)
@@ -43,13 +43,14 @@ class Segmentacion:
             else:
                 self.if_id = self._if.ejecutar()
 
-            self.imprimir_fases()
-            
             if self.if_id is None and self.id_ex is None and self.ex_mem is None and self.mem_wb is None:
-                break
+                return ciclo
+            else:
+                ciclo+=1
 
-        self.unidad_procesamiento.registros.mostrar_registros()
-        self.unidad_procesamiento.memoria_datos.mostrar_variables()
+            if un_paso:
+                return 1
+                break
 
     def check_raw(self):
         if self.id_ex is not None:
@@ -61,25 +62,14 @@ class Segmentacion:
                     return True
         return False
 
-    def imprimir_fases(self):
-        if not self.ex_mem:
-            print("Salida ALU: None")
+    def devolver_registro_acoplamiento_string(self, registro_acoplamiento, nombre_registro):
+        aux = ""
+        if not registro_acoplamiento:
+            aux += f"{nombre_registro}: el registro de acoplamiento esta vacio"
         else:
-            if isinstance(self.ex_mem,dict):
-                print("Salida ALU(salto) a: ", str(self.ex_mem['direccion']))
+            if isinstance(registro_acoplamiento, dict):
+                aux += f"{nombre_registro}" + f"salto a: {registro_acoplamiento['direccion']}"
             else:
-                print("Salida ALU: "+ str(self.ex_mem.valor))
+                aux += f"{nombre_registro}: " + registro_acoplamiento.devolver_string()
 
-        if self.mem_wb is not None:
-           print("Salida Memoria Datos: " + str(self.mem_wb.valor))
-
-        if self.id_ex is None:
-            print("No transformamos nada")
-        else:
-            print("Transformamos: " + str(self.id_ex.valor.imprimir()))
-                
-
-        if self.if_id is not None: 
-            print("Leemos: " + str(self.if_id.valor))
-
-        print("\n")
+        return aux    

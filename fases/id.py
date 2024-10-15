@@ -1,16 +1,18 @@
 from instrucciones.instruccion_aritmetico_logica import InstruccionAritmeticaLogica
 from instrucciones.instruccion_salto import InstruccionSalto
 from instrucciones.intruccion_memoria import InstruccionMemoria
-from registros_acoplamiento_segmentacion.registro_acoplamiento import RegistroAcoplamiento
-
+from registros_acoplamiento_segmentacion.id_ex import ID_EX
 
 class ID:
     def __init__(self, registros, memoria_instrucciones):
         self.registros = registros
         self.memoria_instrucciones = memoria_instrucciones
+        self.linea = None
 
     def ejecutar(self,linea):
+        self.linea = None
         if(linea is not None):
+            self.linea = linea
             return self.crear_instruccion(linea)
         
         
@@ -37,7 +39,7 @@ class ID:
                     
                     operandos[0] = self.registros.devolver_registro(operandos[0])
                 instruccion = InstruccionMemoria(nombre_instruccion, operandos)
-            return RegistroAcoplamiento(instruccion)
+            return ID_EX(instruccion)
         return None
 
 
