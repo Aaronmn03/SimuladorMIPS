@@ -23,10 +23,10 @@ class Menu:
             try:
                 stdscr.clear()
                 self.mostrar_menu(stdscr, menu, seleccion)
-                self.mostrar_registros(stdscr, width)
                 self.mostrar_datos(stdscr, width)
                 self.mostrar_segmentacion(stdscr)
                 self.mostrar_instrucciones(stdscr)
+                self.mostrar_registros(stdscr, width)
                 stdscr.refresh()
 
                 key = stdscr.getch()
